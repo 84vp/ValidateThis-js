@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Validation forms</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script
+  src="https://code.jquery.com/jquery-3.3.1.min.js"
+  integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+  crossorigin="anonymous"></script>
+    <script src="validate-this.js"></script>
+</head>
+<body>
+<div class="container">
+    <h1>Validation for forms</h1>
+    <div class="separator"></div>
+    <h3>FEATURES:</h3>
+    <p>For validation form, add class "validthis-submint" to submit button (input). This button must be inside form.
+    Add class "valid-this" to inputs for validate it.
+        <br> After checking element this element get attribute "valid-status". If elemet is valid - valid-status="true", if novalid -  valid-status="false".
+        <br>If oll elements is valid, form get attribute "valid-form-status='true' ", if summer of elements novalid "valid-form-status='false' .
+        <br> Just us attribute "valid-form-status" for checking form
+    </p>
+    <p><b>Parameters for validation:</b></p>
+    <p><b>"valid-lang" - attribute limits the input of invalid characters</b>
+        <br>can be: "cyr" - only cyrillic symbols;
+        <br> "lat" - only latin;
+        <br>"oll-lang" - oll lang;
+        <br>"numb" - only numbers;
+        <br> "oll" - oll symbols</p>
+     <div class="separator"></div>
+    <p><b>"valid-min-leng" - number for minimal length;</b></p>
+     <div class="separator"></div>
+    <p><b>"valid-max-leng" - number for maximal length;</b></p>
+    <div class="separator"></div>
+    <b>"valid-group" - attribute for group of inputs ore other elements with "one of" selection;</b>
+    <br>"checkboxrow" - for chekboxes groups;
+    <br>"select" - for select form;
+    <div class="separator"></div>
+    <div><b>Styling not valid elements</b></div>
+    <p>For styling not valid elements use selector [valid-status="false"]  or add to teg  &lt;form &gt; attribute [valid-errorclass="error"]</p>
+    <div class="separator"></div>
+    <h2>My form validations demo:</h2>
+    <form valid-errorclass="error">
+        <h3>Validate this form</h3>
+        <div class="separator"></div>
+        <div class="col-row">
+            <div class="col-15"><span>Input only cyrillic</span></div>
+            <div class="col-20"><input class="valid-this" type="text" name="firstname" valid-lang="cyr" valid-min-leng="3" ></div>
+            <div class="col-60"><div class="code-wrapp"><code>&lt;input class="valid-this" type="text" name="firstname" valid-lang="cyr" valid-min-leng="3" &gt;</div></code></div>
+        </div>
+        <div class="col-row">
+            <div class="col-15"><span>Input only latin</span></div>
+            <div class="col-20"><input class="valid-this" type="text" name="lasttname" valid-lang="lat" valid-min-leng="3" ></div>
+            <div class="col-60"><div class="code-wrapp"><code>&lt;input class="valid-this" type="text" name="lasttname" valid-lang="lat" valid-min-leng="3" &gt;</div></code></div>
+        </div>
+        <div class="col-row">
+            <div class="col-15"><span>Input oll lang</span></div>
+            <div class="col-20"><input class="valid-this" type="text" name="midname" valid-lang="oll-lang" valid-min-leng="3" ></div>
+            <div class="col-60"><div class="code-wrapp"><code>&lt;input class="valid-this" type="text" name="midname" valid-lang="oll-lang" valid-min-leng="3" &gt;</div></code></div>
+        </div>
+        <div class="col-row">
+            <div class="col-15"><span>Input only numbers</span></div>
+            <div class="col-20"><input class="valid-this" type="text" name="midname" valid-lang="numb" valid-min-leng="3" ></div>
+            <div class="col-60"><div class="code-wrapp"><code>&lt;input class="valid-this" type="text" name="midname" valid-lang="numb" valid-min-leng="3" &gt;</div></code></div>
+        </div>
+        <div class="col-row">
+            <div class="col-15"><span>Input oll lang and numbers</span></div>
+            <div class="col-20"><input class="valid-this" type="text" name="midname" valid-lang="oll" valid-min-leng="3" ></div>
+            <div class="col-60"><div class="code-wrapp"><code>&lt;input class="valid-this" type="text" name="midname" valid-lang="oll" valid-min-leng="3" &gt;</div></code></div>
+        </div>
+        <div class="col-row">
+            <div class="col-15"><span>email: </span></div>
+            <div class="col-20"><input class="valid-this" type="email" name="emeil" valid-lang="email" valid-min-leng="10"></div>
+            <div class="col-60"><div class="code-wrapp"><code>&lt; input class="valid-this" type="email" name="emeil" valid-lang="email" valid-min-leng="10" &gt;</div></code></div>
+        </div>
+        <div class="col-row">
+            <div class="col-15"><span>Phone: </span></div>
+            <div class="col-20"><input class="valid-this phone-format" type="tel" name="phone" valid-min-leng="10" valid-status=""></div>
+            <div class="col-60"><div class="code-wrapp"><code>&lt; input class="valid-this phone-format" type="tel" name="phone" valid-min-leng="10" valid-status="" &gt;</div></code></div>
+        </div>
+        <div class="separator"></div>
+        <div class="checkboxrow">
+            <h3>Validate checkboxes - add to input class "valid-this"</h3>
+            <div class="col-row">
+                <div class="col-20">
+                <div class="col"><label class="formCheckboks" for="checBox001">
+                <input class="valid-this" type="checkbox" id="checBox001">
+                <span  class="checkbox__label">it is chekbox 1</span>
+            </label>
+            <label class="formCheckboks" for="checBox002">
+                <input class="valid-this" type="checkbox" id="checBox002">
+                <span class="checkbox__label">it is chekbox 2</span>
+            </label>
+            <label class="formCheckboks" for="checBox003">
+                <input class="valid-this" type="checkbox" id="checBox003">
+                <span class="checkbox__label">it is chekbox 3</span>
+            </label></div>
+                </div>
+            <div class="col-60">
+                <div class="code-wrapp">
+                    <code>
+                        &lt; div &gt;
+                        &lt; input class="valid-this" type="checkbox" &gt;
+                        ...
+                        &lt; /div &gt;
+                    </code>
+                </div>
+            </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+
+            <h3>Validate checkboxes row (one or more of checkboxes )- add to parent tag class "valid-this" and attribute "valid-group ="checkboxrow""</h3>
+            <div class="col-row">
+                <div class="col-30">
+                    <div class="valid-this" valid-group="checkboxrow">
+                    <label class="formCheckboks" for="checBox004">
+                <input  type="checkbox" id="checBox004">
+                <span  class="checkbox__label">it is chekbox 4</span>
+            </label>
+            <label class="formCheckboks" for="checBox005">
+                <input  type="checkbox" id="checBox005">
+                <span class="checkbox__label">it is chekbox 5</span>
+            </label>
+            <label class="formCheckboks" for="checBox006">
+                <input type="checkbox" id="checBox006">
+                <span class="checkbox__label">it is chekbox 6</span>
+            </label>
+                </div>
+                </div>
+            <div class="col-60">
+                <div class="code-wrapp">
+                    <code>
+                        &lt; class="valid-this" valid-group="checkboxrow" &gt;
+                        &lt; input class="valid-this" type="checkbox" &gt;
+                        ...
+                        &lt; /div &gt;
+                    </code>
+                </div>
+            </div>
+
+        </div>
+        <div class="separator"></div>
+
+
+            <h3>Validate checkboxes row, selected on of checkboxes - add to parent tag class "valid-this" and attribute "valid-group ="checkboxrow-one-off"</h3>
+    <div class="col-row">
+       <div class="col-30">
+           <div class="valid-this" valid-group="checkboxrow-one-off">
+           <span>Your sex :</span>
+    <label>
+        <input type="checkbox" value="m">
+        <span>Male</span>
+    </label>
+    <label>
+        <input type="checkbox" value="f">
+        <span>Female</span>
+    </label></div>
+       </div>
+        <div class="col-60">
+            <div class="code-wrapp">
+                <code>
+                    &lt; class="valid-this" valid-group="checkboxrow-one-off" &gt;
+                    &lt;input type="checkbox" value="m" &gt;
+                    &lt; type="checkbox" value="f" &gt;
+                </code>
+            </div>
+        </div>
+
+</div>
+        <div class="separator"></div>
+        <div>
+            <h3>Validate select form - just add class="valid-this" valid-group="select" to select teg:</h3>
+            <div class="col-row">
+               <div class="col-15">
+                   <select class="valid-this" valid-group="select">
+                <option value="">select one of</option>
+                <option value="1">option 1</option>
+                <option value="1">option 2</option>
+                <option value="1">option 3</option>
+                <option value="1">option 4</option>
+            </select></div>
+                <div class="col-60">
+                    <div class="code-wrapp">
+                        <code>
+                            &lt; select class="valid-this" valid-group="select" &gt;
+                        </code>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <h3>Validate inputs text group ( mast be valid one of input ) - just add class="valid-this" valid-group="inputtext-one-off" to parent teg:</h3>
+        <div class="col-row">
+           <div class="col-30"> <div class="valid-this" valid-group="inputtext-one-off">
+            <div><span>email: </span><input valid-lang="email" type="email" name="emeil" valid-lang="email" valid-min-leng="6"></div>
+            <div>ore</div>
+            <div><span>Phone: </span><input class="phone-format" type="tel" name="phone" valid-min-leng="10"></div>
+        </div></div>
+            <div class="col-60">
+                <div class="code-wrapp">
+                    <code>
+                        &lt; div class="valid-this" valid-group="inputtext-one-off" &gt;
+                        &lt; input valid-lang="email" type="email" name="emeil" valid-lang="email" valid-min-leng="6" &gt;
+                        &lt; input class="phone-format" type="tel" name="phone" valid-min-leng="10" &gt;
+                    </code>
+                </div>
+            </div>
+        </div>
+        <div class="separator"></div>
+        <div>
+            <button type="submit" class="validthis-submint">SUBMIT</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>

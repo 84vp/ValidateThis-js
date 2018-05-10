@@ -1,0 +1,53 @@
+body{
+    color: #1a1a1a;
+}
+.container {
+    width: 80%;
+    margin: auto;
+}
+.separator {
+    margin: 10px 0;
+    border-bottom: 1px solid #777;
+}
+.error, [valid-status="false"]{
+    color: red;
+    border: 1px solid red;
+}
+form div {
+    margin: 5px 0;
+}
+form span, form input {
+    margin-right: 20px;
+}
+.code-wrapp {
+    padding: 5px;
+    border: 1px solid #777;
+    background-color: #f9f9f9;
+}
+.col-row{
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+}
+.col{
+    display: flex;
+    flex-direction: column;
+}
+.col-10{
+    width: 10%;
+}
+.col-15{
+    width: 15%;
+}
+.col-20{width: 20%;}
+.col-30{width: 30%;}
+.col-40{width: 40%;}
+.col-50{width: 50%;}
+
+.col-60{
+    width: 60%;
+}
+.col-70{
+    width: 70%;
+}
