@@ -1,6 +1,6 @@
 Validation for forms
 -------------------------------------------------------------
- DEMO : https://front-yedynka.github.io/valid-this/
+ DEMO : https://84vp.github.io/ValidateThis-js
 
 FEATURES:
 For validation form, add class "validthis-submint" to submit button (input). This button must be inside form. Add class "valid-this" to inputs for validate it. 
