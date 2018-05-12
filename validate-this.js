@@ -17,7 +17,7 @@ var CharRegNumb = /[0-9\.]+$/;
 
 var RegexMail = /^[0-9-a-zA-Z - _ @ .]+$/; // --- EMAIL INPUTS
 var CharRegexMail = /[0-9-a-zA-Z - _ @ .]/; // --- EMAIL INPUTS
-
+var validEllementsArr = [];
 
 $(document).ready(function () {
     // --- REGULARS
@@ -117,45 +117,65 @@ $(document).ready(function () {
         var errorClass = $(this).parents('form').attr('valid-errorclass')
         console.log("validthis-submint cliked")
         e.preventDefault();
-       var novalid = 0;
+        var novalid = 0;
+        var validid = 0;
         $(this).parents('form').find('.valid-this').each(function () {
-            console.log("validthis each funk is init")
+            //console.log("validthis each funk is init")
+            $(this).attr('valid-id', validid)
+            validEllementsArr[validid] = {};
+            ++validid;
             // --- VALID MIN LENGTH
             if ($(this).is('[valid-min-leng]')){
                 x = Number($(this).attr('valid-min-leng'))
                 //console.log("min length: "+x)
                 if ($(this).val().length < x){
-                    $(this).attr('valid-status','false')
+                    $(this).attr('valid-status','false') 
+                    validEllementsArr[Number($(this).attr('valid-id'))].validminleng = "false";
                 }
                 else{
-                    $(this).attr('valid-status','true')
+                    $(this).attr('valid-status','true');
+validEllementsArr[Number($(this).attr('valid-id'))].validminleng = "true";
                 }
             }
             // --- VALID MAX LENGTH
             if ($(this).is('[valid-max-leng]')){
-                x = Number($(this).attr('valid-min-leng'))
+                x = Number($(this).attr('valid-max-leng'))
                 //console.log("min length: "+x)
                 if ($(this).val().length > x){
-                    $(this).attr('valid-status','false')
+                    $(this).attr('valid-status','false');
+                     validEllementsArr[Number($(this).attr('valid-id'))].validmaxleng = "false";
                 }
                 else{
                     $(this).attr('valid-status','true')
+                    validEllementsArr[Number($(this).attr('valid-id'))].validmaxleng = "true";
                 }
-            }
+            };
             // --- VALID CHECKBOX
             if ($(this).is('[type="checkbox"]')){
                 if ($(this).is(':checked')){
-                    $(this).attr('valid-status','true').parents('label').attr('valid-status','true')
+                    $(this).attr('valid-status','true').parents('label').attr('valid-status','true');
+                     validEllementsArr[Number($(this).attr('valid-id'))].checkboxchecked = "true";
                 }
                 else{
-                    $(this).attr('valid-status','false').parents('label').attr('valid-status','false')
+                    $(this).attr('valid-status','false').parents('label').attr('valid-status','false');
+                    validEllementsArr[Number($(this).attr('valid-id'))].checkboxchecked = "false";
+                }
+            };
+            // --- VALID FOR EMAIL
+            if($(this).is('[valid-lang="email"]')){
+               if(($(this).val().indexOf('@')>-1)&&($(this).val().indexOf('.')>-1)&&($(this).val().indexOf('.') < $(this).val().length - 2)){
+                  $(this).attr('valid-status','true');
+                validEllementsArr[Number($(this).attr('valid-id'))].emailcorrect = "true"; 
+               }
+                
+                 else{ 
+                $(this).attr('valid-status','false');
+                validEllementsArr[Number($(this).attr('valid-id'))].emailcorrect = "false";
                 }
             }
-            // --- VALID FOR EMAIL
-            if(($(this).is('[valid-lang="email"]'))&&($(this).val().indexOf('@')>-1)&&($(this).val().indexOf('.')>-1)&&($(this).val().indexOf('.') < $(this).val().length - 2)){
-                $(this).attr('valid-status','true')
-            }
-            else{ $(this).attr('valid-status','false')}
+           
+            
+            
             // ----- VALIDATION FOR CHECKBOXES GROUP  -----
             if ($(this).is('[valid-group="checkboxrow"]')){
                 y = 0;
@@ -165,9 +185,13 @@ $(document).ready(function () {
                     }
                 })
                 if(y > 0){
-                    $(this).attr('valid-status','true')
+                    $(this).attr('valid-status','true');
+                     validEllementsArr[Number($(this).attr('valid-id'))].checkboxrow = "true"; 
                 }
-                else{ $(this).attr('valid-status','false')}
+                else{ 
+                    $(this).attr('valid-status','false');
+                     validEllementsArr[Number($(this).attr('valid-id'))].checkboxrow = "false"; 
+                    }
             }
             // ----- VALIDATION FOR CHECKBOXES ONE_OFF GROUP  -----
             if ($(this).is('[valid-group="checkboxrow-one-off"]')){
@@ -178,56 +202,67 @@ $(document).ready(function () {
                     }
                 })
                 if(y > 0){
-                    $(this).attr('valid-status','true')
+                    $(this).attr('valid-status','true');
+                     validEllementsArr[Number($(this).attr('valid-id'))].checkboxrowoneoff = "true"; 
                 }
-                else{ $(this).attr('valid-status','false')}
+                else{ 
+                    $(this).attr('valid-status','false');
+                    validEllementsArr[Number($(this).attr('valid-id'))].checkboxrowoneoff = "false"; 
+                }
             }
 
             // ----- VALIDATION FOR SELECT  -----
             if ($(this).is('[valid-group="select"]')){
                 y = 0;
                 if($(this).val()){
-                    $(this).attr('valid-status','true')
+                    $(this).attr('valid-status','true');
+                    validEllementsArr[Number($(this).attr('valid-id'))].selectselectsed = "true"; 
                 }
-                else{ $(this).attr('valid-status','false')}
+                else{ 
+                    $(this).attr('valid-status','false');
+                    validEllementsArr[Number($(this).attr('valid-id'))].selectselectsed = "false"; 
+                }
             }
 
         //    -----
             if($(this).is('[valid-group="inputtext-one-off"]')){
-                console.log("valid-group=inputtext-one-off IS")
+                //console.log("valid-group=inputtext-one-off IS")
                 s = 0;
+               // $(this).find('input').each(function () {
+               //     if ($(this).is('[valid-min-leng]')){
+               //         x = Number($(this).attr('valid-min-leng'))
+               //         //console.log("min length: "+x)
+               //         if ($(this).val().length > x){
+               //             $(this).attr('valid-status','true');
+               //              
+               //         }
+               //         else{
+               //             $(this).attr('valid-status','false')
+               //         }
+               //     }
+               //     if ($(this).is('[valid-max-leng]')){
+               //         x = Number($(this).attr('valid-min-leng'))
+               //         //console.log("min length: "+x)
+               //         if ($(this).val().length < x){
+               //             $(this).attr('valid-status','true')
+               //         }
+               //         else{
+               //             $(this).attr('valid-status','truefalse')
+               //         }
+               //     }
+               // })
                 $(this).find('input').each(function () {
-                    if ($(this).is('[valid-min-leng]')){
-                        x = Number($(this).attr('valid-min-leng'))
-                        //console.log("min length: "+x)
-                        if ($(this).val().length > x){
-                            $(this).attr('valid-status','true')
-                        }
-                        else{
-                            $(this).attr('valid-status','truefalse')
-                        }
-                    }
-                    if ($(this).is('[valid-max-leng]')){
-                        x = Number($(this).attr('valid-min-leng'))
-                        //console.log("min length: "+x)
-                        if ($(this).val().length < x){
-                            $(this).attr('valid-status','true')
-                        }
-                        else{
-                            $(this).attr('valid-status','truefalse')
-                        }
-                    }
-                })
-                $(this).find('input').each(function () {
-                    if($(this).attr('valid-status') == 'true'){
+                    if(($(this).is('[valid-status]') && ($(this).attr('valid-status') == 'true')) || $(this).val().length > 0){
                         ++s
                     }
                 })
                 if (s > 0){
-                    $(this).attr('valid-status','true')
+                    $(this).attr('valid-status','true');
+                    validEllementsArr[Number($(this).attr('valid-id'))].inputtextoneoff = "true"; 
                 }
                 else{
-                    $(this).attr('valid-status','false')
+                    $(this).attr('valid-status','false');
+                    validEllementsArr[Number($(this).attr('valid-id'))].inputtextoneoff = "false"; 
                 }
             }
         })

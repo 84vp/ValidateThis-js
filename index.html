@@ -40,6 +40,10 @@
     <div><b>Styling not valid elements</b></div>
     <p>For styling not valid elements use selector [valid-status="false"]  or add to teg  &lt;form &gt; attribute [valid-errorclass="error"]</p>
     <div class="separator"></div>
+    <p>
+        For get information, with elements validated status, you cen chec object "validEllementsArr"
+    </p>
+    <div class="separator"></div>
     <h2>My form validations demo:</h2>
     <form valid-errorclass="error">
         <h3>Validate this form</h3>
@@ -56,12 +60,12 @@
         </div>
         <div class="col-row">
             <div class="col-15"><span>Input oll lang</span></div>
-            <div class="col-20"><input class="valid-this" type="text" name="midname" valid-lang="oll-lang" valid-min-leng="3" ></div>
+            <div class="col-20"><input class="valid-this" type="text" valid-lang="oll-lang" valid-min-leng="3" ></div>
             <div class="col-60"><div class="code-wrapp"><code>&lt;input class="valid-this" type="text" name="midname" valid-lang="oll-lang" valid-min-leng="3" &gt;</div></code></div>
         </div>
         <div class="col-row">
             <div class="col-15"><span>Input only numbers</span></div>
-            <div class="col-20"><input class="valid-this" type="text" name="midname" valid-lang="numb" valid-min-leng="3" ></div>
+            <div class="col-20"><input class="valid-this" type="text" valid-lang="numb" valid-max-leng="5" valid-min-leng="2"></div>
             <div class="col-60"><div class="code-wrapp"><code>&lt;input class="valid-this" type="text" name="midname" valid-lang="numb" valid-min-leng="3" &gt;</div></code></div>
         </div>
         <div class="col-row">
